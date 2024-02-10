@@ -2,21 +2,19 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 export default function TodoEdit({ id, tasks, setTasks }) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const task = tasks.find((obj) => obj.id === id);
 
   const onSubmit = (data) => {
-    data.id = id;
-    const index = tasks.findIndex((task) => task.id === id);
-    if (index !== -1) {
-      tasks[index] = {
-        ...tasks[index],
-        ...data,
-      };
+    const updated = tasks.findIndex((obj) => obj.id === id);
 
-      setTasks(tasks);
-    } else {
-      console.error(`Task with id ${id} not found`);
+    if (updated !== -1) {
+      tasks[updated].name = data.name;
+      tasks[updated].priority = data.priority;
+
+      const updatedTasks = [...tasks];
+      setTasks(updatedTasks);
+      reset();
     }
   };
 
@@ -57,31 +55,9 @@ export default function TodoEdit({ id, tasks, setTasks }) {
               defaultValue={task?.priority}
               className="select select-primary w-full border-0 text-black"
             >
-              <option disabled selected>
-                Priority Level
-              </option>
-              <option>Low</option>
-              <option>Medium</option>
-              <option>Hard</option>
-            </select>
-          </div>
-          <div className="form-control mt-2">
-            <label className="label">
-              <span className="label-text text-[#f8da69] font-medium">
-                Status
-              </span>
-            </label>
-            <select
-              {...register("status", { required: false })}
-              name="status"
-              defaultValue={task?.status}
-              className="select select-primary w-full border-0 text-black"
-            >
-              <option disabled selected>
-                Status
-              </option>
-              <option>Incomplete</option>
-              <option>Complete</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
             </select>
           </div>
           <div className="divider divider-[#f8da69]"></div>

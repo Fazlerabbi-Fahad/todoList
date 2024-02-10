@@ -2,11 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 export default function TodoForm({ setTasks, tasks }) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     data.id = Math.floor(Math.random() * 10000);
     data.status = "Incomplete";
     setTasks([...tasks, data]);
+    reset();
   };
 
   return (
@@ -44,12 +45,9 @@ export default function TodoForm({ setTasks, tasks }) {
               name="priority"
               className="select select-primary w-full border-0"
             >
-              <option disabled selected>
-                Priority Level
-              </option>
-              <option>Low</option>
-              <option>Medium</option>
-              <option>Hard</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
             </select>
           </div>
           <div className="divider divider-[#f8da69]"></div>
