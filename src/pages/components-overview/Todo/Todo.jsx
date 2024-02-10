@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import TodoForm from "../../../Components/UI/modal/TodoForm";
+import TodoList from "./TodoList";
 
 export default function Todo() {
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("tasks")) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
   return (
     <div>
       <div className="w-[100vw] text-center">
@@ -17,7 +26,10 @@ export default function Todo() {
           <p className="text-xl">Add Tasks</p>
         </button>
       </div>
-      <TodoForm />
+      <div className="my-5 mx-20">
+        <TodoList tasks={tasks} setTasks={setTasks} />
+      </div>
+      <TodoForm setTasks={setTasks} tasks={tasks} />
     </div>
   );
 }
