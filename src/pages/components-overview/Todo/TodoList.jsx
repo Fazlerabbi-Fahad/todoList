@@ -25,7 +25,7 @@ export default function TodoList({ tasks, setTasks, getPageTasks }) {
     }
   };
   return (
-    <div className="overflow-x-auto">
+    <div className="max-[600px]:overflow-x-scroll max-[600px]:w-[600px] mx-auto">
       <table className="table">
         <thead>
           <tr className="text-[#f8da69]">

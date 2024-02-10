@@ -7,6 +7,7 @@ export default function TodoForm({ setTasks, tasks }) {
     data.id = Math.floor(Math.random() * 10000);
     data.status = "Incomplete";
     setTasks([...tasks, data]);
+
     reset();
   };
 

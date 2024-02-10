@@ -45,29 +45,29 @@ export default function Todo() {
       </div>
       <div className="w-[100vw] text-center mt-3">
         <button
-          className="btn btn-outline text-[#f8da69] hover:text-black hover:bg-[#f8da69] hover:border-0"
+          className="btn btn-outline text-[#f8da69] hover:text-black hover:bg-[#f8da69] hover:border-0 max-[600px]:btn-sm"
           onClick={() => document.getElementById("my_modal_1").showModal()}
         >
           <FaPlus />
-          <p className="text-xl">Add Tasks</p>
+          <p className="text-xl max-[600px]:text-sm">Add Tasks</p>
         </button>
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-end mt-2 max-[600px]:flex max-[600px]:justify-center">
         <button
-          className="btn btn-outline text-[#f8da69] hover:text-black hover:bg-[#f8da69] hover:border-0 mr-3"
+          className="btn btn-outline text-[#f8da69] hover:text-black hover:bg-[#f8da69] hover:border-0 mr-3 max-[600px]:btn-sm"
           onClick={deleteAllTasks}
         >
-          <p className="text-sm">Delete All Tasks</p>
+          <p className="text-sm max-[600px]:text-sm">Delete All Tasks</p>
         </button>
         <button
-          className="btn btn-outline text-[#f8da69] hover:text-black hover:bg-[#f8da69] hover:border-0 mr-3"
+          className="btn btn-outline text-[#f8da69] hover:text-black hover:bg-[#f8da69] hover:border-0 mr-3 max-[600px]:btn-sm"
           onClick={markCompleted}
         >
-          <p className="text-sm">Complete All Tasks</p>
+          <p className="text-sm max-[600px]:text-sm">Complete All Tasks</p>
         </button>
       </div>
 
-      <div className="my-5 mx-20">
+      <div className="my-5 mx-20 max-[900px]:mx-0 ">
         <TodoList
           tasks={tasks}
           setTasks={setTasks}
@@ -75,11 +75,11 @@ export default function Todo() {
         />
       </div>
 
-      <div className="w-[100vw] text-center mt-3">
+      <div className="w-[100vw] text-center mt-3 ">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index}
-            className={`btn btn-outline text-[#f8da69] hover:text-black hover:bg-[#f8da69] hover:border-0 mr-2 ${
+            className={`btn btn-outline  text-[#f8da69] hover:text-black hover:bg-[#f8da69] hover:border-0 mr-2 max-[600px]:btn-sm ${
               currentPage === index + 1 ? "font-bold" : ""
             }`}
             onClick={() => handlePageChange(index + 1)}
